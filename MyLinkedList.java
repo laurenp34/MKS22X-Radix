@@ -3,12 +3,13 @@ import java.io.*;
 
 public class MyLinkedList {
  private int size;
- private Node start,end;
+ private Node start,end,current;
 
  public MyLinkedList(Node first) {
    start = first;
    end = first; //????
    size = 1;
+   current = first;
   }
 
   public MyLinkedList(int value) {
@@ -255,6 +256,13 @@ public void extend(MyLinkedList other){
     other.end = null;
 
 }
+
+  //this method uses instance variable current to iterate through list.
+  public int getNext() {
+    if (current == end) current = start;
+    else current = current.next();
+    return current.getData();
+  }
 
 
 
