@@ -261,10 +261,10 @@ public void extend(MyLinkedList other){
 
   //this method uses instance variable current to iterate through list.
   public int getNext() {
-    System.out.println(current);
+    int out = current.getData();
     if (current == end) current = start;
     else current = current.next();
-    return current.getData();
+    return out;
   }
 
 
@@ -278,10 +278,10 @@ public void extend(MyLinkedList other){
     teeth.add(3);
     teeth.add(6);
     System.out.println(teeth);
-    System.out.println(teeth.getNthNode(0));
+    //System.out.println(teeth.getNthNode(0));
 
-    Node n = teeth.getNthNode(0).next();
-    System.out.println(n.next());
+    //Node n = teeth.getNthNode(0).next();
+    //System.out.println(n.next());
 
     System.out.println(teeth.getNext());
     System.out.println(teeth.getNext());
