@@ -16,6 +16,7 @@ public class MyLinkedList {
     Node firstNode = new Node(value);
     start = firstNode;
     end = firstNode;
+    current = firstNode;
   }
 
   public MyLinkedList() {
@@ -35,6 +36,7 @@ public class MyLinkedList {
   //this block decides if it is empty.
     if (start == null && end == null) {
       start = toAdd;
+      current = start;
 
     } else {
 
@@ -259,6 +261,7 @@ public void extend(MyLinkedList other){
 
   //this method uses instance variable current to iterate through list.
   public int getNext() {
+    System.out.println(current);
     if (current == end) current = start;
     else current = current.next();
     return current.getData();
@@ -274,8 +277,18 @@ public void extend(MyLinkedList other){
     teeth.add(1);
     teeth.add(3);
     teeth.add(6);
+    System.out.println(teeth);
+    System.out.println(teeth.getNthNode(0));
 
-    teeth.get(3);
+    Node n = teeth.getNthNode(0).next();
+    System.out.println(n.next());
+
+    System.out.println(teeth.getNext());
+    System.out.println(teeth.getNext());
+    System.out.println(teeth.getNext());
+    System.out.println(teeth.getNext());
+    System.out.println(teeth.getNext());
+    System.out.println(teeth.getNext());
 
   }
 
