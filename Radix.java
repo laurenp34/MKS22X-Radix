@@ -1,6 +1,6 @@
 public class Radix {
 
-  public void radixsort(int[] data){
+  public static void radixsort(int[] data){
     int passes = maxDigits(data);
 
     for (int i=0;i<passes;i++) {
@@ -13,10 +13,18 @@ public class Radix {
 
       //loop through data.
       for (int idx=0;idx<data.length;idx++) {
+        int element = data[idx];
         //get specific digit of current int.
-        int digit = Integer.parseInt( ""+ (""+Math.abs(data[idx])).charAt(i));
+        int digit = getNthDigit(element,i);
+        //add to end of bucket.
+        digits[digit].add(element);
       }
 
+      //now add elements back to data in new order
+      for (int idx=0;idx+1<10;idx++) {
+        digits[idx].extend(digits[idx+1]);
+      }
+      System.out.println(digits[0]);
     }
   }
 
@@ -53,11 +61,13 @@ public class Radix {
 
   public static void main(String[] args) {
     int[] data = {1,5,88,99,-1000,599999,-6000000};
+    radixsort(data);
+    /*
     System.out.println(maxDigits(data));
     System.out.println(getNthDigit(423,1));
     System.out.println(getNthDigit(4233,3));
     System.out.println(getNthDigit(423,2));
-    System.out.println(getNthDigit(444423,4));
+    System.out.println(getNthDigit(444423,4));*/
   }
 
 }
