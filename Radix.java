@@ -1,7 +1,14 @@
 public class Radix {
 
   public void radixsort(int[] data){
+    int passes = maxDigits(data);
 
+    for (int i=0;i<passes;i++) {
+      MyLinkedList[] digits = new MyLinkedList[10];
+      for (int i2=0;i2<10;i2++) {
+        digits[i2] = new MyLinkedList();
+      }
+    }
   }
 
   private static int maxDigits(int[] data) {
