@@ -3,7 +3,7 @@ public class Radix {
   public static void radixsort(int[] data){
     int passes = maxDigits(data);
 
-    for (int i=0;i<passes;i++) {
+
       //create array of linkedlists.
       MyLinkedList[] digits = new MyLinkedList[10];
       //initialize eachbucket.
@@ -15,17 +15,54 @@ public class Radix {
       for (int idx=0;idx<data.length;idx++) {
         int element = data[idx];
         //get specific digit of current int.
-        int digit = getNthDigit(element,i);
+        int digit = getNthDigit(element,0);
         //add to end of bucket.
         digits[digit].add(element);
       }
 
       //now add elements back to data in new order
+      MyLinkedList out = new MyLinkedList();
       for (int idx=0;idx+1<10;idx++) {
-        digits[idx].extend(digits[idx+1]);
+        out.extend(digits[idx]);
       }
-      System.out.println(digits[0]);
+      //System.out.println(digits[0]);
+
+    if (passes > 1) data = radix(out,1,passes);
+
+  }
+
+  //helper method, where i is the pass #.
+  private static int[] radix(MyLinkedList data, int i, int passes) {
+    System.out.println(data);
+    //base case: i == passes, then copy LL to int[] to return
+    if (i==passes) {
+      int[] out = new int[data.size()];
+      for (int l=0;l<data.size();l++) {
+        out[l] = data.getNext();
+      }
+      return out;
+     }
+    //create array of linkedlists. (buckets)
+    MyLinkedList[] digits = new MyLinkedList[10];
+    //initialize eachbucket.
+    for (int i2=0;i2<10;i2++) {
+      digits[i2] = new MyLinkedList();
     }
+
+    //loop through data.
+    for (int idx=0;idx<data.size();idx++) {
+      int element = data.getNext();
+      //get specific digit of current int.
+      int digit = getNthDigit(element,i);
+      //add to end of bucket.
+      digits[digit].add(element);
+    }
+
+    //now add elements back to data in new order
+    for (int idx=0;idx+1<10;idx++) {
+      digits[idx].extend(digits[idx+1]);
+    }
+    return radix(digits[0],i+1,passes);
   }
 
   private static int maxDigits(int[] data) {
