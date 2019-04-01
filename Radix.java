@@ -51,6 +51,7 @@ public class Radix {
   public static void main(String[] args) {
     int[] data = {1,5,88,99,-1000,599999,-6000000};
     System.out.println(maxDigits(data));
+    System.out.println(getNthDigit(423,0));
   }
 
 }
