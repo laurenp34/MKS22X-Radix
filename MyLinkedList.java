@@ -267,6 +267,10 @@ public void extend(MyLinkedList other){
     return out;
   }
 
+  public void resetCur() {
+    current = start;
+  }
+
 
 
 
