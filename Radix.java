@@ -3,6 +3,7 @@ public class Radix {
   public static void radixsort(int[] data){
     int passes = maxDigits(data);
 
+    for (int pass=0;pass<passes;pass++) {
 
       //create array of linkedlists.
       MyLinkedList[] digits = new MyLinkedList[10];
@@ -24,15 +25,16 @@ public class Radix {
       }
 
       //now add elements back to data in new order
-      MyLinkedList out = new MyLinkedList();
+      MyLinkedList  out = new MyLinkedList();
       for (int idx=0;idx<10;idx++) {
         if (! digits[idx].equals(null)) out.extend(digits[idx]);
       }
       //System.out.println(digits[0]);
 
-    if (passes > 1) data = radix(out,1,passes);
-
+      if (passes > 1) data = radix(out,1,passes);
+    }
   }
+
 
   //helper method, where i is the pass #.
   private static int[] radix(MyLinkedList data, int i, int passes) {
@@ -40,6 +42,7 @@ public class Radix {
     //base case: i == passes, then copy LL to int[] to return
     if (i==passes) {
       int[] out = new int[data.size()];
+      data.resetCur();
       for (int l=0;l<data.size();l++) {
         out[l] = data.getNext();
       }
@@ -53,8 +56,9 @@ public class Radix {
     }
 
     //loop through data.
+    data.resetCur();
     for (int idx=0;idx<data.size();idx++) {
-      data.resetCur();
+
       int element = data.getNext();
       //get specific digit of current int.
       int digit = getNthDigit(element,i);
@@ -69,11 +73,11 @@ public class Radix {
 
     //now add elements back to data in new order
     MyLinkedList out = new MyLinkedList();
-    for (int idx=0;idx+1<10;idx++) {
+    for (int idx=0;idx<10;idx++) {
       System.out.println(digits[idx]);
       if (! digits[idx].equals(null)) out.extend(digits[idx]);
     }
-    return radix(digits[0],i+1,passes);
+    return radix(out,i+1,passes);
   }
 
   private static int maxDigits(int[] data) {
