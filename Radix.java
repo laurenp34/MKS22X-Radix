@@ -19,11 +19,14 @@ public class Radix {
         //add to end of bucket.
         digits[digit].add(element);
       }
+      for (int i=0;i<10;i++) {
+        System.out.println(i+": "+digits[i]);
+      }
 
       //now add elements back to data in new order
       MyLinkedList out = new MyLinkedList();
-      for (int idx=0;idx+1<10;idx++) {
-        out.extend(digits[idx]);
+      for (int idx=0;idx<10;idx++) {
+        if (! digits[idx].equals(null)) out.extend(digits[idx]);
       }
       //System.out.println(digits[0]);
 
@@ -51,6 +54,7 @@ public class Radix {
 
     //loop through data.
     for (int idx=0;idx<data.size();idx++) {
+      data.resetCur();
       int element = data.getNext();
       //get specific digit of current int.
       int digit = getNthDigit(element,i);
@@ -58,10 +62,16 @@ public class Radix {
       digits[digit].add(element);
     }
 
+    for (int ii=0;ii<10;ii++) {
+      System.out.println(ii+": "+digits[ii]);
+    }
+
+
     //now add elements back to data in new order
     MyLinkedList out = new MyLinkedList();
     for (int idx=0;idx+1<10;idx++) {
-      out.extend(digits[idx]);
+      System.out.println(digits[idx]);
+      if (! digits[idx].equals(null)) out.extend(digits[idx]);
     }
     return radix(digits[0],i+1,passes);
   }
