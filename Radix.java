@@ -59,8 +59,9 @@ public class Radix {
     }
 
     //now add elements back to data in new order
+    MyLinkedList out = new MyLinkedList();
     for (int idx=0;idx+1<10;idx++) {
-      digits[idx].extend(digits[idx+1]);
+      out.extend(digits[idx]);
     }
     return radix(digits[0],i+1,passes);
   }
