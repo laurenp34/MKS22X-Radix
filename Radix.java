@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class Radix {
 
   public static void radixsort(int[] data){
@@ -20,13 +23,14 @@ public class Radix {
         //if negative, add to beginning of bucket.
         else digits[digit].add(0,element);
 
-        System.out.println(digits[digit]);
+        //System.out.println(digits[digit]);
       }
 
+      /*
       // PRINTING BUCKETS
       for (int i=0;i<10;i++) {
         System.out.println(i+": "+digits[i]);
-      }
+      }*/
 
 
       //now add elements back to data in new order
@@ -43,7 +47,7 @@ public class Radix {
 
   //helper method, where i is the pass #.
   private static int[] radix(MyLinkedList data, int i, int passes) {
-    System.out.println(data);
+    //System.out.println(data);
     //base case: i == passes, then copy LL to int[] to return
     if (i==passes) {
       int[] out = new int[data.size()];
@@ -74,10 +78,10 @@ public class Radix {
       //if negative, add to beginning of bucket.
       else digits[digit].add(0,element);
     }
-
+    /*
     for (int ii=0;ii<10;ii++) {
       System.out.println(ii+": "+digits[ii]);
-    }
+    }*/
 
 
 
@@ -86,7 +90,7 @@ public class Radix {
       int sIdx = digits[0].size();//start index for copying back on last call for negative numbers.
       //link the lists together
       for (int idx=0;idx<10;idx++) {
-        System.out.println(digits[idx]);
+        //System.out.println(digits[idx]);
         if (! digits[idx].equals(null)) out.extend(digits[idx]);
       }
 
@@ -138,6 +142,7 @@ public class Radix {
   public static void main(String[] args) {
     int[] data = {1,5,88,99,-1000,599999,-6000000};
     radixsort(data);
+    System.out.println(Arrays.toString(data));
     /*
     System.out.println(maxDigits(data));
     System.out.println(getNthDigit(423,1));
