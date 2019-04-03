@@ -164,6 +164,7 @@ public void add(int index,Integer value) {
       start.setNext(atIndex);
     } else {
       start = toAdd;
+      end = toAdd;
     }
   } else if (index == size()) { // adding to last index.
     add(value);
@@ -293,6 +294,13 @@ public void extend(MyLinkedList other){
     System.out.println(teeth.getNext());
     System.out.println(teeth.getNext());
     System.out.println(teeth.getNext());
+
+    MyLinkedList[] morning = new MyLinkedList[10];
+    for (int i=0;i<10;i++) {
+      morning[i] = new MyLinkedList();
+    }
+    morning[1].add(0,5);
+    System.out.println(morning[1]);
 
   }
 
