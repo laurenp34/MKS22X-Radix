@@ -19,6 +19,8 @@ public class Radix {
         if (element > 0) digits[digit].add(element);
         //if negative, add to beginning of bucket.
         else digits[digit].add(0,element);
+
+        System.out.println(digits[digit]);
       }
 
       // PRINTING BUCKETS
@@ -66,8 +68,11 @@ public class Radix {
       int element = data.getNext();
       //get specific digit of current int.
       int digit = getNthDigit(element,i);
-      //add to end of bucket.
-      digits[digit].add(element);
+
+      //if positive, add to end of bucket.
+      if (element > 0) digits[digit].add(element);
+      //if negative, add to beginning of bucket.
+      else digits[digit].add(0,element);
     }
 
     for (int ii=0;ii<10;ii++) {
