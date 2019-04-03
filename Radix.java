@@ -18,13 +18,13 @@ public class Radix {
         //if positive, add to end of bucket.
         if (element > 0) digits[digit].add(element);
         //if negative, add to beginning of bucket.
-        else digits[digit].add(element,0);
+        else digits[digit].add(0,element);
       }
 
-      /* PRINTING BUCKETS
+      // PRINTING BUCKETS
       for (int i=0;i<10;i++) {
         System.out.println(i+": "+digits[i]);
-      }*/
+      }
 
 
       //now add elements back to data in new order
@@ -90,7 +90,7 @@ public class Radix {
         int cIdx = sIdx; // current index, just to not change sIdx.
         for (int t=0;t<(out.size()-sIdx);t++) { // t counts how many elements you should count
           if (out.get(cIdx) > 0) cIdx ++;
-          else out.add(out.remove(cIdx),0);
+          else out.add(0,out.remove(cIdx));
         }
       }
 
