@@ -87,19 +87,25 @@ public class Radix {
 
       //now add elements back to data in new order
       MyLinkedList<Integer> out = new MyLinkedList<Integer>();
-      int sIdx = digits[0].size();//start index for copying back on last call for negative numbers.
-      //link the lists together
-      for (int idx=0;idx<10;idx++) {
-        //System.out.println(digits[idx]);
-        if (! digits[idx].equals(null)) out.extend(digits[idx]);
-      }
 
       //if this is the last pass, start at sIdx and move any negatives to front.
       if (i+ 1==passes) {
-        int cIdx = sIdx; // current index, just to not change sIdx.
-        for (int t=0;t<(out.size()-sIdx);t++) { // t counts how many elements you should count
-          if (out.get(cIdx) > 0) cIdx ++;
-          else out.add(0,out.remove(cIdx));
+
+        if (! digits[0].equals(null)) out.extend(digits[0]);
+        for (int idx=1;idx<10;idx++) {
+            //loop through each bucket to add to 0
+            while (digits[idx].size() > 0) {
+              int element = digits[idx].remove(0);
+              if (element > 0) out.add(element);
+              else out.add(0,element);
+            }
+
+        }
+      } else {
+        //link the lists together
+        for (int idx=0;idx<10;idx++) {
+          //System.out.println(digits[idx]);
+          if (! digits[idx].equals(null)) out.extend(digits[idx]);
         }
       }
 
