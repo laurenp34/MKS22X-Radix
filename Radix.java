@@ -7,10 +7,10 @@ public class Radix {
     int passes = maxDigits(data);
 
       //create array of linkedlists.
-      MyLinkedList[] digits = new MyLinkedList[10];
+      MyLinkedList<Integer>[] digits = new MyLinkedList[10];
       //initialize eachbucket.
       for (int i2=0;i2<10;i2++) {
-        digits[i2] = new MyLinkedList();
+        digits[i2] = new MyLinkedList<Integer>();
       }
 
       //loop through data.
@@ -34,7 +34,7 @@ public class Radix {
 
 
       //now add elements back to data in new order
-      MyLinkedList  out = new MyLinkedList();
+      MyLinkedList<Integer>  out = new MyLinkedList<Integer>();
       for (int idx=0;idx<10;idx++) {
         if (! digits[idx].equals(null)) out.extend(digits[idx]);
       }
@@ -46,7 +46,7 @@ public class Radix {
 
 
   //helper method, where i is the pass #.
-  private static int[] radix(MyLinkedList data, int i, int passes) {
+  private static int[] radix(MyLinkedList<Integer> data, int i, int passes) {
     //System.out.println(data);
     //base case: i == passes, then copy LL to int[] to return
     if (i==passes) {
@@ -59,10 +59,10 @@ public class Radix {
      }
 
     //create array of linkedlists. (buckets)
-    MyLinkedList[] digits = new MyLinkedList[10];
+    MyLinkedList<Integer>[] digits = new MyLinkedList[10];
     //initialize eachbucket.
     for (int i2=0;i2<10;i2++) {
-      digits[i2] = new MyLinkedList();
+      digits[i2] = new MyLinkedList<Integer>();
     }
 
     //loop through data.
@@ -86,7 +86,7 @@ public class Radix {
 
 
       //now add elements back to data in new order
-      MyLinkedList out = new MyLinkedList();
+      MyLinkedList<Integer> out = new MyLinkedList<Integer>();
       int sIdx = digits[0].size();//start index for copying back on last call for negative numbers.
       //link the lists together
       for (int idx=0;idx<10;idx++) {
