@@ -1,13 +1,15 @@
-public class Node {
-  private Integer data;
+public class Node<E> {
+  private E data;
   private Node next,prev;
 
-  public Node(int yum) { // should the next node be part of the constructor?
+@SuppressWarnings("unchecked")
+  public Node(E yum) { // should the next node be part of the constructor?
     data = yum;
     //next = setNext;
     //prev = setPrev;
   }
 
+@SuppressWarnings("unchecked")
   public Node() {
 
   }
@@ -22,12 +24,12 @@ public class Node {
     prev = setPrev;
   }
 
-  public Integer getData() {
+  public E getData() {
     return data;
   }
 
-  public Integer setData(Integer newData) {
-    Integer oldData = data;
+  public E setData(E newData) {
+    E oldData = data;
 
     data = newData;
     return oldData;

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class MyLinkedList {
+public class MyLinkedList<E> {
  private int size;
  private Node start,end,current;
 
@@ -12,7 +12,7 @@ public class MyLinkedList {
    current = first;
   }
 
-  public MyLinkedList(int value) {
+  public MyLinkedList(E value) {
     Node firstNode = new Node(value);
     start = firstNode;
     end = firstNode;
@@ -27,7 +27,7 @@ public class MyLinkedList {
   }
 
 //THIS METHOD ADDS THE VALUE TO THE END.
-  public boolean add(Integer value) {
+  public boolean add(E value) {
     //need some way to connect the previous node to the new one.
     //i think we would need a method in the Node class that could alter the next node.
     Node toAdd = new Node(value);
@@ -95,8 +95,8 @@ public class MyLinkedList {
   }
 
 
-
-  public Integer get(int index) {
+  /*
+  public E get(int index) {
 
     if (index >= size() || index < 0) {
       throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
@@ -104,10 +104,10 @@ public class MyLinkedList {
 
     return getNthNode(index).getData();
 
-  }
+  } */
 
-
-  public Integer set(int index,Integer value) {
+/*
+  public E set(int index,E value) {
 
     if (index >= size() || index < 0) {
       throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
@@ -136,7 +136,7 @@ public class MyLinkedList {
     return false;
   }
 
-  public int indexOf(Integer value) {
+  public int indexOf(E value) {
 
     for (int i=0;i<size;i++) {
 
@@ -145,9 +145,9 @@ public class MyLinkedList {
       }
     }
     return -1;
-  }
+  }*/
 
-public void add(int index,Integer value) {
+public void add(int index,E value) {
 
 
   if (index > size() || index < 0) {
@@ -186,8 +186,9 @@ public void add(int index,Integer value) {
   size ++;
 }
 
+//@SuppressWarnings("unchecked")
+public E remove(int index) {
 
-public Integer remove(int index) {
 
   if (index >= size() || index < 0) {
     throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
@@ -218,11 +219,11 @@ public Integer remove(int index) {
   }
 
   size --;
-  return current.getData();
+  return (E)current.getData();
 
 }
-
-public boolean remove(Integer value) {
+/*
+public boolean remove(E value) {
 
   int index = indexOf(value);
   if (index == -1) {
@@ -232,7 +233,7 @@ public boolean remove(Integer value) {
   remove(index);
   return true;
 
-}
+}*/
 
 public void extend(MyLinkedList other){
         //in O(1) runtime, move the elements from other onto the end of this
@@ -261,8 +262,8 @@ public void extend(MyLinkedList other){
 }
 
   //this method uses instance variable current to iterate through list.
-  public int getNext() {
-    int out = current.getData();
+  public E getNext() {
+    E out = (E) current.getData();
     if (current == end) current = start;
     else current = current.next();
     return out;
