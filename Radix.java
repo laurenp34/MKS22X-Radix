@@ -40,22 +40,25 @@ public class Radix {
       }
       //System.out.println(digits[0]);
 
-      if (passes > 1) data = radix(out,1,passes);
+      if (passes > 1) radix(out,1,passes,data);
+      //System.out.println(Arrays.toString(data));
 
   }
 
 
   //helper method, where i is the pass #.
-  private static int[] radix(MyLinkedList<Integer> data, int i, int passes) {
+  private static void radix(MyLinkedList<Integer> data, int i, int passes, int[] dataa) {
     //System.out.println(data);
     //base case: i == passes, then copy LL to int[] to return
     if (i==passes) {
-      int[] out = new int[data.size()];
+
       data.resetCur();
       for (int l=0;l<data.size();l++) {
-        out[l] = data.getNext();
+        dataa[l] = data.getNext();
       }
-      return out;
+      return;
+      //System.out.println(Arrays.toString(out));
+      //return out;
      }
 
     //create array of linkedlists. (buckets)
@@ -110,7 +113,7 @@ public class Radix {
       }
 
       //regardless, call recursion
-      return radix(out,i+1,passes);
+      radix(out,i+1,passes,dataa);
 
   }
 
@@ -149,7 +152,8 @@ public class Radix {
     int[] data = {1,5,88,99,-1000,599999,-6000000};
     radixsort(data);
     System.out.println(Arrays.toString(data));
-    /*
+
+/*
     System.out.println(maxDigits(data));
     System.out.println(getNthDigit(423,1));
     System.out.println(getNthDigit(4233,3));
