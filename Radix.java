@@ -40,7 +40,7 @@ public class Radix {
       }
       //System.out.println(digits[0]);
 
-      if (passes > 1) radix(out,1,passes,data);
+      radix(out,1,passes,data);
       //System.out.println(Arrays.toString(data));
 
   }
@@ -149,7 +149,7 @@ public class Radix {
   }
 
   public static void main(String[] args) {
-    int[] data = {1,5,88,99,-1000,599999,-6000000};
+    int[] data = {5,1,3,4,5,2,5,2,3,3,1,9};
     radixsort(data);
     System.out.println(Arrays.toString(data));
 
