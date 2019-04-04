@@ -197,8 +197,13 @@ public E remove(int index) {
   Node current = getNthNode(index);
 
   if (index == 0) {
+    if (size() == 1) {
+      start = null;
+
+    } else {
     start = getNthNode(1);
     start.setPrev(null); // did this so it wouldn't mess up future loops.
+  }
 
   } else if (index + 1 == size()) {
     end = getNthNode(index-1);
